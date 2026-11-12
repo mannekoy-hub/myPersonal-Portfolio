@@ -19,7 +19,7 @@ const sentences: string[] = [
 type StackItem = {
   name: string;
   description: string;
-  icon?: string; 
+  icon?: string;
   badge?: string;
 };
 
@@ -71,6 +71,11 @@ const stackGroups: StackGroup[] = [
         name: "Tailwind CSS",
         description: "Utility-first styling",
         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "TypeScript",
+        description: "Typed JavaScript development",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
       },
       {
         name: "React",
@@ -142,9 +147,30 @@ const stackGroups: StackGroup[] = [
         description: "Backend and database hosting",
         icon: "https://cdn.simpleicons.org/railway",
       },
+      {
+        name: "VS Code",
+        description: "Code editor and debugging",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",
+      },
+      {
+        name: "Canva",
+        description: "Graphic and visual design",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg",
+      },
+      {
+        name: "Google Cloud",
+        description: "Cloud computing and services",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg",
+      },
+      {
+        name: "AWS",
+        description: "Cloud infrastructure and hosting",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original.svg",
+      },
     ],
   },
 ];
+
 
 type TimelineItem = {
   label: string;
@@ -555,7 +581,7 @@ export function About() {
             >
               AI
             </span>
-            <h2 className="m-0 text-[1.35rem] font-extrabold text-[#f4f6ff]">My AI agent assistants</h2>
+            <h2 className="m-0 text-[1.35rem] font-extrabold text-[#f4f6ff]">My AI assistants</h2>
           </div>
           <ul className="motion-stagger m-0 grid list-none grid-cols-1 gap-3 p-0  sm:grid-cols-2 lg:grid-cols-3">
             {aiAgents.map((agent) => (
