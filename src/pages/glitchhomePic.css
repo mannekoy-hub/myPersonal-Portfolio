@@ -1,0 +1,273 @@
+/* Futuristic glitch for the profile picture.
+   One full cycle lasts 1.5s and repeats forever:
+   calm for the first 45%, then a burst of RGB-split slices, jitter and scanlines. */
+
+.glitch-pic {
+  position: relative;
+  isolation: isolate;
+}
+
+.glitch-pic__base {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: glitch-base 1.5s steps(1, end) infinite;
+}
+
+/* Coloured silhouettes of the photo, created from its transparent shape */
+.glitch-pic__layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  will-change: transform, clip-path, opacity;
+}
+
+.glitch-pic__layer--cyan {
+  z-index: 1;
+  background: #00e5ff;
+  animation: glitch-cyan 1.5s steps(1, end) infinite;
+}
+
+.glitch-pic__layer--magenta {
+  z-index: 1;
+  background: #b44dff;
+  animation: glitch-magenta 1.5s steps(1, end) infinite;
+}
+
+/* Thin scanlines drawn only on top of the person */
+.glitch-pic__layer--scan {
+  z-index: 3;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 229, 255, 0.28) 0,
+    rgba(0, 229, 255, 0.28) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  animation: glitch-scan 1.5s steps(1, end) infinite;
+}
+
+@keyframes glitch-base {
+  0%,
+  45% {
+    transform: none;
+    filter: none;
+  }
+  47% {
+    transform: translate(-4px, 0) skewX(-3deg);
+    filter: contrast(1.25) saturate(1.4);
+  }
+  50% {
+    transform: translate(5px, 1px) skewX(2deg);
+    filter: hue-rotate(35deg);
+  }
+  54% {
+    transform: translate(-2px, 0);
+    filter: brightness(1.25) contrast(1.2);
+  }
+  58% {
+    transform: translate(3px, -1px) skewX(-2deg);
+    filter: none;
+  }
+  62% {
+    transform: none;
+    filter: none;
+  }
+  68% {
+    transform: translate(-5px, 0) skewX(3deg);
+    filter: hue-rotate(-30deg) saturate(1.5);
+  }
+  72% {
+    transform: translate(2px, 0);
+    filter: none;
+  }
+  78% {
+    transform: translate(-3px, 1px) skewX(-1.5deg);
+    filter: brightness(1.2);
+  }
+  84%,
+  100% {
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes glitch-cyan {
+  0%,
+  45% {
+    opacity: 0;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+  47% {
+    opacity: 1;
+    transform: translate(-12px, 0);
+    clip-path: inset(8% 0 72% 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(10px, 2px);
+    clip-path: inset(42% 0 38% 0);
+  }
+  54% {
+    opacity: 1;
+    transform: translate(-16px, 0);
+    clip-path: inset(68% 0 10% 0);
+  }
+  58% {
+    opacity: 1;
+    transform: translate(8px, -2px);
+    clip-path: inset(20% 0 58% 0);
+  }
+  62% {
+    opacity: 0.85;
+    transform: translate(-6px, 0);
+    clip-path: inset(0 0 0 0);
+  }
+  66% {
+    opacity: 0;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+  68% {
+    opacity: 1;
+    transform: translate(14px, 0);
+    clip-path: inset(30% 0 48% 0);
+  }
+  72% {
+    opacity: 1;
+    transform: translate(-10px, 2px);
+    clip-path: inset(75% 0 5% 0);
+  }
+  76% {
+    opacity: 1;
+    transform: translate(6px, 0);
+    clip-path: inset(5% 0 80% 0);
+  }
+  80% {
+    opacity: 0.85;
+    transform: translate(-4px, 0);
+    clip-path: inset(0 0 0 0);
+  }
+  84%,
+  100% {
+    opacity: 0;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes glitch-magenta {
+  0%,
+  45% {
+    opacity: 0;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+  47% {
+    opacity: 1;
+    transform: translate(12px, 0);
+    clip-path: inset(55% 0 25% 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-9px, -2px);
+    clip-path: inset(14% 0 66% 0);
+  }
+  54% {
+    opacity: 1;
+    transform: translate(15px, 0);
+    clip-path: inset(35% 0 45% 0);
+  }
+  58% {
+    opacity: 1;
+    transform: translate(-8px, 2px);
+    clip-path: inset(78% 0 4% 0);
+  }
+  62% {
+    opacity: 0.85;
+    transform: translate(6px, 0);
+    clip-path: inset(0 0 0 0);
+  }
+  66% {
+    opacity: 0;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+  68% {
+    opacity: 1;
+    transform: translate(-13px, 0);
+    clip-path: inset(60% 0 22% 0);
+  }
+  72% {
+    opacity: 1;
+    transform: translate(9px, -2px);
+    clip-path: inset(12% 0 72% 0);
+  }
+  76% {
+    opacity: 1;
+    transform: translate(-6px, 0);
+    clip-path: inset(48% 0 34% 0);
+  }
+  80% {
+    opacity: 0.85;
+    transform: translate(4px, 0);
+    clip-path: inset(0 0 0 0);
+  }
+  84%,
+  100% {
+    opacity: 0;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes glitch-scan {
+  0%,
+  45% {
+    opacity: 0;
+  }
+  47% {
+    opacity: 1;
+  }
+  56% {
+    opacity: 0.4;
+  }
+  60% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 0;
+  }
+  68% {
+    opacity: 1;
+  }
+  76% {
+    opacity: 0.5;
+  }
+  84%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Respect people who turn animations off in their system settings */
+@media (prefers-reduced-motion: reduce) {
+  .glitch-pic__base,
+  .glitch-pic__layer {
+    animation: none;
+  }
+
+  .glitch-pic__layer {
+    opacity: 0;
+  }
+}
